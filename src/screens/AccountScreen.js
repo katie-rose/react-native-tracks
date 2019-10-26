@@ -1,42 +1,29 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
-import { NavigationEvents } from "react-navigation";
+import { View, StyleSheet, Text } from "react-native";
+import { Button } from "react-native-elements";
+import { SafeAreaView } from "react-navigation";
+import Spacer from "../components/Spacer";
 import { Context as AuthContext } from "../context/AuthContext";
-import AuthForm from "../components/AuthForm";
-import NavLink from "../components/NavLink";
+import { FontAwesome } from "@expo/vector-icons";
 
-const SignupScreen = ({ navigation }) => {
-  const { state, signup, clearErrorMessage } = useContext(AuthContext);
+const AccountScreen = () => {
+  const { signout } = useContext(AuthContext);
 
   return (
-    <View style={styles.container}>
-      <NavigationEvents onWillBlur={clearErrorMessage} />
-      <AuthForm
-        headerText='Sign Up for Tracker'
-        errorMessage={state.errorMessage}
-        submitButtonText='Sign Up'
-        onSubmit={signup}
-      />
-      <NavLink
-        routeName='Signin'
-        text='Already have an account? Sign in instead!'
-      />
-    </View>
+    <SafeAreaView forceInset={{ top: "always" }}>
+      <Text style={{ fontSize: 48 }}>AccountScreen</Text>
+      <Spacer>
+        <Button title='Sign Out' onPress={signout} />
+      </Spacer>
+    </SafeAreaView>
   );
 };
 
-SignupScreen.navigationOptions = () => {
-  return {
-    header: null
-  };
+AccountScreen.navigationOptions = {
+  title: "Account",
+  tabBarIcon: <FontAwesome name='gear' size={20} />
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    marginBottom: 250
-  }
-});
+const styles = StyleSheet.create({});
 
-export default SignupScreen;
+export default AccountScreen;
