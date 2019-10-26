@@ -4,7 +4,6 @@ import { View, StyleSheet, Text, Button } from "react-native";
 const SignupScreen = ({ navigation }) => {
   return (
     <>
-      <Text style={{ fontSize: 48 }}>Sign Up Screen</Text>;
       <Button
         title='Go to Signin'
         onPress={() => navigation.navigate("Sign In")}
@@ -17,6 +16,18 @@ const SignupScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+SignupScreen.navigationOptions = () => {
+  return {
+    header: null
+  };
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginBottom: 250
+  }
+});
 
 export default SignupScreen;
